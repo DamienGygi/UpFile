@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 16 Mars 2017 à 15:44
+-- Généré le :  Jeu 23 Mars 2017 à 12:19
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -50,10 +50,10 @@ CREATE TABLE `role` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `type`
+-- Structure de la table `type_file`
 --
 
-CREATE TABLE `type` (
+CREATE TABLE `type_file` (
   `idtype` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -61,10 +61,10 @@ CREATE TABLE `type` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Structure de la table `user_upfile`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `user_upfile` (
   `iduser` int(11) NOT NULL,
   `idrole` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
@@ -93,15 +93,15 @@ ALTER TABLE `role`
   ADD PRIMARY KEY (`idrole`);
 
 --
--- Index pour la table `type`
+-- Index pour la table `type_file`
 --
-ALTER TABLE `type`
+ALTER TABLE `type_file`
   ADD PRIMARY KEY (`idtype`);
 
 --
--- Index pour la table `user`
+-- Index pour la table `user_upfile`
 --
-ALTER TABLE `user`
+ALTER TABLE `user_upfile`
   ADD PRIMARY KEY (`iduser`),
   ADD KEY `idrole` (`idrole`);
 
@@ -120,14 +120,14 @@ ALTER TABLE `file`
 ALTER TABLE `role`
   MODIFY `idrole` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `type`
+-- AUTO_INCREMENT pour la table `type_file`
 --
-ALTER TABLE `type`
+ALTER TABLE `type_file`
   MODIFY `idtype` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `user`
+-- AUTO_INCREMENT pour la table `user_upfile`
 --
-ALTER TABLE `user`
+ALTER TABLE `user_upfile`
   MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Contraintes pour les tables exportées
@@ -137,13 +137,13 @@ ALTER TABLE `user`
 -- Contraintes pour la table `file`
 --
 ALTER TABLE `file`
-  ADD CONSTRAINT `fk_idtype` FOREIGN KEY (`idtype`) REFERENCES `type` (`idtype`),
-  ADD CONSTRAINT `fk_iduser` FOREIGN KEY (`iduser`) REFERENCES `user` (`iduser`);
+  ADD CONSTRAINT `fk_idtype` FOREIGN KEY (`idtype`) REFERENCES `type_file` (`idtype`),
+  ADD CONSTRAINT `fk_iduser` FOREIGN KEY (`iduser`) REFERENCES `user_upfile` (`iduser`);
 
 --
--- Contraintes pour la table `user`
+-- Contraintes pour la table `user_upfile`
 --
-ALTER TABLE `user`
+ALTER TABLE `user_upfile`
   ADD CONSTRAINT `fk_idrole` FOREIGN KEY (`idrole`) REFERENCES `role` (`idrole`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

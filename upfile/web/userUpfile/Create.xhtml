@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUserUpfileTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUserUpfileLabel_iduser}" for="iduser" />
+                    <h:inputText id="iduser" value="#{userUpfileController.selected.iduser}" title="#{bundle.CreateUserUpfileTitle_iduser}" required="true" requiredMessage="#{bundle.CreateUserUpfileRequiredMessage_iduser}"/>
+                    <h:outputLabel value="#{bundle.CreateUserUpfileLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{userUpfileController.selected.name}" title="#{bundle.CreateUserUpfileTitle_name}" />
+                    <h:outputLabel value="#{bundle.CreateUserUpfileLabel_surname}" for="surname" />
+                    <h:inputText id="surname" value="#{userUpfileController.selected.surname}" title="#{bundle.CreateUserUpfileTitle_surname}" />
+                    <h:outputLabel value="#{bundle.CreateUserUpfileLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{userUpfileController.selected.email}" title="#{bundle.CreateUserUpfileTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateUserUpfileLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{userUpfileController.selected.username}" title="#{bundle.CreateUserUpfileTitle_username}" />
+                    <h:outputLabel value="#{bundle.CreateUserUpfileLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{userUpfileController.selected.password}" title="#{bundle.CreateUserUpfileTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateUserUpfileLabel_idrole}" for="idrole" />
+                    <h:selectOneMenu id="idrole" value="#{userUpfileController.selected.idrole}" title="#{bundle.CreateUserUpfileTitle_idrole}" required="true" requiredMessage="#{bundle.CreateUserUpfileRequiredMessage_idrole}">
+                        <f:selectItems value="#{roleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{userUpfileController.create}" value="#{bundle.CreateUserUpfileSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{userUpfileController.prepareList}" value="#{bundle.CreateUserUpfileShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUserUpfileIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

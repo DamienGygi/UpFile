@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFileTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateFileLabel_idfile}" for="idfile" />
+                    <h:inputText id="idfile" value="#{fileController.selected.idfile}" title="#{bundle.CreateFileTitle_idfile}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_idfile}"/>
+                    <h:outputLabel value="#{bundle.CreateFileLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{fileController.selected.name}" title="#{bundle.CreateFileTitle_name}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateFileLabel_desciption}" for="desciption" />
+                    <h:inputTextarea rows="4" cols="30" id="desciption" value="#{fileController.selected.desciption}" title="#{bundle.CreateFileTitle_desciption}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_desciption}"/>
+                    <h:outputLabel value="#{bundle.CreateFileLabel_createdat}" for="createdat" />
+                    <h:inputText id="createdat" value="#{fileController.selected.createdat}" title="#{bundle.CreateFileTitle_createdat}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_createdat}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateFileLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{fileController.selected.url}" title="#{bundle.CreateFileTitle_url}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_url}"/>
+                    <h:outputLabel value="#{bundle.CreateFileLabel_idtype}" for="idtype" />
+                    <h:selectOneMenu id="idtype" value="#{fileController.selected.idtype}" title="#{bundle.CreateFileTitle_idtype}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_idtype}">
+                        <f:selectItems value="#{typeFileController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateFileLabel_iduser}" for="iduser" />
+                    <h:selectOneMenu id="iduser" value="#{fileController.selected.iduser}" title="#{bundle.CreateFileTitle_iduser}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_iduser}">
+                        <f:selectItems value="#{userUpfileController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{fileController.create}" value="#{bundle.CreateFileSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{fileController.prepareList}" value="#{bundle.CreateFileShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateFileIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
