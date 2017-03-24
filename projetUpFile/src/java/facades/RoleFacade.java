@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package facades;
 
+import entities.Role;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,9 +15,9 @@ import javax.persistence.PersistenceContext;
  * @author damien.gygi
  */
 @Stateless
-public class UserUpfileFacade extends AbstractFacade<UserUpfile> {
+public class RoleFacade extends AbstractFacade<Role> {
 
-    @PersistenceContext(unitName = "upfilePU")
+    @PersistenceContext(unitName = "projetTestPU")
     private EntityManager em;
 
     @Override
@@ -24,8 +25,8 @@ public class UserUpfileFacade extends AbstractFacade<UserUpfile> {
         return em;
     }
 
-    public UserUpfileFacade() {
-        super(UserUpfile.class);
+    public RoleFacade() {
+        super(Role.class);
     }
     
 }

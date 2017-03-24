@@ -1,7 +1,9 @@
-package entities;
+package controllers;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
+import entities.Role;
+import controllers.util.JsfUtil;
+import controllers.util.PaginationHelper;
+import facades.RoleFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -16,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("userUpfileController")
+@Named("roleController")
 @SessionScoped
-public class UserUpfileController implements Serializable {
+public class RoleController implements Serializable {
 
-    private UserUpfile current;
+    private Role current;
     private DataModel items = null;
     @EJB
-    private entities.UserUpfileFacade ejbFacade;
+    private facades.RoleFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public UserUpfileController() {
+    public RoleController() {
     }
 
-    public UserUpfile getSelected() {
+    public Role getSelected() {
         if (current == null) {
-            current = new UserUpfile();
+            current = new Role();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private UserUpfileFacade getFacade() {
+    private RoleFacade getFacade() {
         return ejbFacade;
     }
 
@@ -66,13 +68,13 @@ public class UserUpfileController implements Serializable {
     }
 
     public String prepareView() {
-        current = (UserUpfile) getItems().getRowData();
+        current = (Role) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new UserUpfile();
+        current = new Role();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -80,7 +82,7 @@ public class UserUpfileController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpfileCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RoleCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -89,7 +91,7 @@ public class UserUpfileController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (UserUpfile) getItems().getRowData();
+        current = (Role) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -97,7 +99,7 @@ public class UserUpfileController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpfileUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RoleUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -106,7 +108,7 @@ public class UserUpfileController implements Serializable {
     }
 
     public String destroy() {
-        current = (UserUpfile) getItems().getRowData();
+        current = (Role) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -130,7 +132,7 @@ public class UserUpfileController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpfileDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RoleDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -186,21 +188,21 @@ public class UserUpfileController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public UserUpfile getUserUpfile(java.lang.Integer id) {
+    public Role getRole(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = UserUpfile.class)
-    public static class UserUpfileControllerConverter implements Converter {
+    @FacesConverter(forClass = Role.class)
+    public static class RoleControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            UserUpfileController controller = (UserUpfileController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "userUpfileController");
-            return controller.getUserUpfile(getKey(value));
+            RoleController controller = (RoleController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "roleController");
+            return controller.getRole(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -220,11 +222,11 @@ public class UserUpfileController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof UserUpfile) {
-                UserUpfile o = (UserUpfile) object;
-                return getStringKey(o.getIduser());
+            if (object instanceof Role) {
+                Role o = (Role) object;
+                return getStringKey(o.getIdrole());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + UserUpfile.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Role.class.getName());
             }
         }
 

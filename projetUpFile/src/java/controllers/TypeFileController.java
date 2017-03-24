@@ -1,7 +1,9 @@
-package entities;
+package controllers;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
+import entities.TypeFile;
+import controllers.util.JsfUtil;
+import controllers.util.PaginationHelper;
+import facades.TypeFileFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -16,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("roleController")
+@Named("typeFileController")
 @SessionScoped
-public class RoleController implements Serializable {
+public class TypeFileController implements Serializable {
 
-    private Role current;
+    private TypeFile current;
     private DataModel items = null;
     @EJB
-    private entities.RoleFacade ejbFacade;
+    private facades.TypeFileFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public RoleController() {
+    public TypeFileController() {
     }
 
-    public Role getSelected() {
+    public TypeFile getSelected() {
         if (current == null) {
-            current = new Role();
+            current = new TypeFile();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private RoleFacade getFacade() {
+    private TypeFileFacade getFacade() {
         return ejbFacade;
     }
 
@@ -66,13 +68,13 @@ public class RoleController implements Serializable {
     }
 
     public String prepareView() {
-        current = (Role) getItems().getRowData();
+        current = (TypeFile) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new Role();
+        current = new TypeFile();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -80,7 +82,7 @@ public class RoleController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RoleCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TypeFileCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -89,7 +91,7 @@ public class RoleController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (Role) getItems().getRowData();
+        current = (TypeFile) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -97,7 +99,7 @@ public class RoleController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RoleUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TypeFileUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -106,7 +108,7 @@ public class RoleController implements Serializable {
     }
 
     public String destroy() {
-        current = (Role) getItems().getRowData();
+        current = (TypeFile) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -130,7 +132,7 @@ public class RoleController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("RoleDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TypeFileDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -186,21 +188,21 @@ public class RoleController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public Role getRole(java.lang.Integer id) {
+    public TypeFile getTypeFile(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = Role.class)
-    public static class RoleControllerConverter implements Converter {
+    @FacesConverter(forClass = TypeFile.class)
+    public static class TypeFileControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            RoleController controller = (RoleController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "roleController");
-            return controller.getRole(getKey(value));
+            TypeFileController controller = (TypeFileController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "typeFileController");
+            return controller.getTypeFile(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -220,11 +222,11 @@ public class RoleController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Role) {
-                Role o = (Role) object;
-                return getStringKey(o.getIdrole());
+            if (object instanceof TypeFile) {
+                TypeFile o = (TypeFile) object;
+                return getStringKey(o.getIdtype());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Role.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + TypeFile.class.getName());
             }
         }
 

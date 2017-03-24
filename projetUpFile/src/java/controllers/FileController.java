@@ -1,7 +1,9 @@
-package entities;
+package controllers;
 
-import entities.util.JsfUtil;
-import entities.util.PaginationHelper;
+import entities.File;
+import controllers.util.JsfUtil;
+import controllers.util.PaginationHelper;
+import facades.FileFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -16,29 +18,29 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-@Named("typeFileController")
+@Named("fileController")
 @SessionScoped
-public class TypeFileController implements Serializable {
+public class FileController implements Serializable {
 
-    private TypeFile current;
+    private File current;
     private DataModel items = null;
     @EJB
-    private entities.TypeFileFacade ejbFacade;
+    private facades.FileFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public TypeFileController() {
+    public FileController() {
     }
 
-    public TypeFile getSelected() {
+    public File getSelected() {
         if (current == null) {
-            current = new TypeFile();
+            current = new File();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private TypeFileFacade getFacade() {
+    private FileFacade getFacade() {
         return ejbFacade;
     }
 
@@ -66,13 +68,13 @@ public class TypeFileController implements Serializable {
     }
 
     public String prepareView() {
-        current = (TypeFile) getItems().getRowData();
+        current = (File) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new TypeFile();
+        current = new File();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -80,7 +82,7 @@ public class TypeFileController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TypeFileCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FileCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -89,7 +91,7 @@ public class TypeFileController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (TypeFile) getItems().getRowData();
+        current = (File) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -97,7 +99,7 @@ public class TypeFileController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TypeFileUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FileUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -106,7 +108,7 @@ public class TypeFileController implements Serializable {
     }
 
     public String destroy() {
-        current = (TypeFile) getItems().getRowData();
+        current = (File) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -130,7 +132,7 @@ public class TypeFileController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TypeFileDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FileDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -186,21 +188,21 @@ public class TypeFileController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-    public TypeFile getTypeFile(java.lang.Integer id) {
+    public File getFile(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
 
-    @FacesConverter(forClass = TypeFile.class)
-    public static class TypeFileControllerConverter implements Converter {
+    @FacesConverter(forClass = File.class)
+    public static class FileControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            TypeFileController controller = (TypeFileController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "typeFileController");
-            return controller.getTypeFile(getKey(value));
+            FileController controller = (FileController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "fileController");
+            return controller.getFile(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -220,11 +222,11 @@ public class TypeFileController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof TypeFile) {
-                TypeFile o = (TypeFile) object;
-                return getStringKey(o.getIdtype());
+            if (object instanceof File) {
+                File o = (File) object;
+                return getStringKey(o.getIdfile());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + TypeFile.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + File.class.getName());
             }
         }
 

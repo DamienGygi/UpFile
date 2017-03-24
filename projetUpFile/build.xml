@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="upfile" default="default" basedir=".">
-    <description>Builds, tests, and runs the project upfile.</description>
+<project name="projetUpFile" default="default" basedir=".">
+    <description>Builds, tests, and runs the project projetUpFile.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 

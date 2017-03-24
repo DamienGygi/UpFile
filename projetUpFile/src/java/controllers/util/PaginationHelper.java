@@ -1,4 +1,4 @@
-package entities.util;
+package controllers.util;
 
 import javax.faces.model.DataModel;
 
