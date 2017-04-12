@@ -22,6 +22,26 @@
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
     
+    <security-constraint>
+        <display-name>ConstraintAdmin</display-name>
+        <web-resource-collection>
+            <web-resource-name>AdminResource</web-resource-name>
+            <description/>
+            <url-pattern>/faces/admin/*</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>OtherResource</web-resource-name>
+            <description/>
+            <url-pattern>/faces/role/*</url-pattern>
+            <url-pattern>/faces/userUpfile/View.xhtml</url-pattern>
+            <url-pattern>/faces/userUpfile/Edit.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>upfileRealm</realm-name>
