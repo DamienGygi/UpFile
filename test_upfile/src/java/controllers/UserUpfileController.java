@@ -235,7 +235,6 @@ public class UserUpfileController implements Serializable {
     }
             public void logout() {
                 FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-
         }
 
 }
