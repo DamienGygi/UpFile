@@ -233,8 +233,10 @@ public class UserUpfileController implements Serializable {
             }
         }
     }
-            public void logout() {
+            public void logout() throws IOException {
                 FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+                FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/");
         }
 
 }

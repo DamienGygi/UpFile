@@ -12,13 +12,28 @@
 
     <h:body>
         <h:form>
-            <div class="dropdown">
-            <button class="dropbtn">Profile</button>
-                <div class="dropdown-content">
-                    <h:link outcome="/login/login.xhtml" value="login"/>
-                    <li><h:commandLink action="#{userUpfileController.logout()}" value="logout"/></li>
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="container">                                    
+                        <h:panelGroup rendered="${empty request.remoteUser}">
+                            <div class="dropdown">
+                                <button class="dropbtn">Login</button>
+                                <div class="dropdown-content">
+                                    <h:link outcome="/login/login.xhtml" value="login"/>
+                                    </div>
+                            </div>  
+                        </h:panelGroup>
+                        <h:panelGroup rendered="${not empty request.remoteUser}">
+                            <div class="dropdown">
+                                <button class="dropbtn">logout</button>
+                                <div class="dropdown-content">
+                                   <h:commandLink action="#{userUpfileController.logout()}" value="logout"/>
+                                </div>
+                            </div>  
+                        </h:panelGroup>
+                    </div>
                 </div>
-            </div>
+            </nav>
         </h:form>
         <h1>
             <ui:insert name="title">Test</ui:insert>
