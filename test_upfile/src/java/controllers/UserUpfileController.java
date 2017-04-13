@@ -4,9 +4,12 @@ import entities.UserUpfile;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
 import facades.UserUpfileFacade;
+import java.io.IOException;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -229,7 +232,10 @@ public class UserUpfileController implements Serializable {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + UserUpfile.class.getName());
             }
         }
-
     }
+            public void logout() {
+                FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+
+        }
 
 }

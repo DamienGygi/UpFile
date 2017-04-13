@@ -9,6 +9,7 @@ import entities.UserUpfile;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,12 @@ public class UserUpfileFacade extends AbstractFacade<UserUpfile> {
 
     public UserUpfileFacade() {
         super(UserUpfile.class);
+    }
+    
+    public UserUpfile findUserByName(String username) {
+        Query users = em.createNamedQuery("User.findByUsername").setParameter("username", username);
+        
+        return (UserUpfile) users.getSingleResult();
     }
     
 }
