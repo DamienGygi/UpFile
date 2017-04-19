@@ -32,6 +32,9 @@
                     <h:outputText value="#{bundle.ViewFileLabel_iduser}"/>
                     <h:outputText value="#{fileController.selected.iduser}" title="#{bundle.ViewFileTitle_iduser}"/>
                 </h:panelGrid>
+                <br/>
+                <br/>
+                <h:commandLink action="#{fileController.downloadFile}" value="Download" immediate="true"/>
                 <br />
                 <h:commandLink action="#{fileController.destroyAndView}" value="#{bundle.ViewFileDestroyLink}"/>
                 <br />

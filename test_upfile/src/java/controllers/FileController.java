@@ -113,13 +113,13 @@ public class FileController implements Serializable {
 
     public String prepareView() throws FileNotFoundException, IOException {
         current = (File) getItems().getRowData();
-        Download(current.getName());
+       
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
     
     
-    public void Download(String name) throws FileNotFoundException, MalformedURLException, IOException
+    public void download(String name) throws FileNotFoundException, MalformedURLException, IOException
     {  
       String currentDir = new java.io.File( "." ).getCanonicalPath();
       URL website = new URL(new java.io.File(currentDir+"\\"+name).toURI().toURL().toString());
@@ -128,8 +128,18 @@ public class FileController implements Serializable {
         Path target = Paths.get(System.getProperty("user.home")+"\\Downloads\\"+name);
         Files.copy(in,target, StandardCopyOption.REPLACE_EXISTING);
       }
+      
+      
     }
-
+    public void downloadFile()
+    {
+         try {
+            JsfUtil.addSuccessMessage("File download successed");
+            download(current.getName());
+        } catch (Exception e) {
+             JsfUtil.addErrorMessage(e, "File download failed");
+        }
+    }
     public String prepareCreate() {
         current = new File();
         selectedItemIndex = -1;
@@ -138,10 +148,12 @@ public class FileController implements Serializable {
 
     public String create() {
         try {
-            getFacade().create(current);
-            //System.out.println("controllers.FileController.create() || WORKING");
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FileCreated"));
             upload(current.getUrl(),current.getName());
+            current.setUrl("../"+current.getName());
+            getFacade().create(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FileCreated"));          
+            
+            
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -154,7 +166,7 @@ public class FileController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
-
+   
     public String update() {
         try {
             getFacade().edit(current);
