@@ -1,12 +1,29 @@
 package controllers;
-
-import entities.File;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
+import entities.File;
 import facades.FileFacade;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.channels.FileChannel;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+import javax.activation.MimetypesFileTypeMap;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -22,13 +39,40 @@ import javax.faces.model.SelectItem;
 @SessionScoped
 public class FileController implements Serializable {
 
-    private File current;
+    private entities.File current;
     private DataModel items = null;
     @EJB
     private facades.FileFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-
+    
+    public void upload(String url, String name) throws IOException
+    {
+        java.io.File sourceFile = new java.io.File(url);
+        String currentDir = new java.io.File( "." ).getCanonicalPath();
+        java.io.File destFile = new java.io.File(currentDir+"\\"+name);
+        if(!destFile.exists()) {
+            destFile.createNewFile();
+        }
+        FileChannel source = null;
+        FileChannel destination = null;
+        try {
+            source = new FileInputStream(sourceFile).getChannel();
+            destination = new FileOutputStream(destFile).getChannel();
+            destination.transferFrom(source, 0, source.size());
+        }
+        finally {
+            if(source != null) {
+                source.close();
+            }
+            if(destination != null) {
+                destination.close();
+            }
+        }
+        //System.out.println("||controllers.FileController.upload()|| WORKING");
+        System.out.println(currentDir+"|| WORKING");
+        
+    }
     public FileController() {
     }
 
@@ -67,10 +111,23 @@ public class FileController implements Serializable {
         return "List";
     }
 
-    public String prepareView() {
+    public String prepareView() throws FileNotFoundException, IOException {
         current = (File) getItems().getRowData();
+        Download(current.getName());
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
+    }
+    
+    
+    public void Download(String name) throws FileNotFoundException, MalformedURLException, IOException
+    {  
+      String currentDir = new java.io.File( "." ).getCanonicalPath();
+      URL website = new URL(new java.io.File(currentDir+"\\"+name).toURI().toURL().toString());
+      try (InputStream in = website.openStream()) 
+      {
+        Path target = Paths.get(System.getProperty("user.home")+"\\Downloads\\"+name);
+        Files.copy(in,target, StandardCopyOption.REPLACE_EXISTING);
+      }
     }
 
     public String prepareCreate() {
@@ -82,7 +139,9 @@ public class FileController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
+            //System.out.println("controllers.FileController.create() || WORKING");
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FileCreated"));
+            upload(current.getUrl(),current.getName());
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -106,9 +165,17 @@ public class FileController implements Serializable {
             return null;
         }
     }
-
-    public String destroy() {
+    public void deleteFile(String filename) throws IOException
+    {
+        String currentDir = new java.io.File( "." ).getCanonicalPath();
+        java.io.File delFile = new java.io.File(currentDir+"\\"+filename);
+        if(delFile.exists() && !delFile.isDirectory()) { 
+            delFile.delete();
+        }    
+    }
+    public String destroy() throws IOException {
         current = (File) getItems().getRowData();
+        deleteFile(current.getName());
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();

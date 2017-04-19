@@ -8,6 +8,7 @@ package facades;
 import java.util.List;
 import javax.persistence.EntityManager;
 
+
 /**
  *
  * @author damien.gygi

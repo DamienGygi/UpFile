@@ -20,3 +20,6 @@ hs_err_pid*
 /projetTest/build/
 /projetTest/dist/
 /projetUpFile/nbproject/private/
+/test_upfile/nbproject/private/
+/test_upfile/build/
+/test_upfile/dist/

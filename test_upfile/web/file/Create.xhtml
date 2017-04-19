@@ -13,7 +13,7 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateFileLabel_idfile}" for="idfile" />
                     <h:inputText id="idfile" value="#{fileController.selected.idfile}" title="#{bundle.CreateFileTitle_idfile}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_idfile}"/>

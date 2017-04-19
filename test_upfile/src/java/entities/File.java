@@ -5,6 +5,8 @@
  */
 package entities;
 
+import controllers.FileController;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -24,7 +26,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author damien.gygi
@@ -64,7 +65,7 @@ public class File implements Serializable {
     private Date createdat;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 250)
     @Column(name = "url")
     private String url;
     @JoinColumn(name = "idtype", referencedColumnName = "idtype")
@@ -81,12 +82,13 @@ public class File implements Serializable {
         this.idfile = idfile;
     }
 
-    public File(Integer idfile, String name, String desciption, Date createdat, String url) {
+    public File(Integer idfile, String name, String desciption, Date createdat, String url) throws IOException {
         this.idfile = idfile;
         this.name = name;
         this.desciption = desciption;
         this.createdat = createdat;
-        this.url = url;
+        this.url= url;
+        
     }
 
     public Integer getIdfile() {
