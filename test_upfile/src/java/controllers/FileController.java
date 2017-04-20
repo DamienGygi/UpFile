@@ -3,27 +3,20 @@ import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
 import entities.File;
 import facades.FileFacade;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.channels.FileChannel;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
 import java.util.ResourceBundle;
-import java.util.Scanner;
-import javax.activation.MimetypesFileTypeMap;
+import java.util.UUID;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -34,6 +27,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.Part;
 
 @Named("fileController")
 @SessionScoped
@@ -45,33 +39,43 @@ public class FileController implements Serializable {
     private facades.FileFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    
-    public void upload(String url, String name) throws IOException
+    private Part file;
+ 
+    public Part getFile() {
+    return file;
+    }
+ 
+    public void setFile(Part file) {
+    this.file = file;
+    }
+    public void upload() throws IOException
     {
-        java.io.File sourceFile = new java.io.File(url);
-        String currentDir = new java.io.File( "." ).getCanonicalPath();
-        java.io.File destFile = new java.io.File(currentDir+"\\"+name);
-        if(!destFile.exists()) {
-            destFile.createNewFile();
-        }
-        FileChannel source = null;
-        FileChannel destination = null;
-        try {
-            source = new FileInputStream(sourceFile).getChannel();
-            destination = new FileOutputStream(destFile).getChannel();
-            destination.transferFrom(source, 0, source.size());
-        }
-        finally {
-            if(source != null) {
-                source.close();
+        if (file != null){
+            try {
+                String selectedName= current.getName();
+                String Extension[]=selectedName.split("\\.");
+                if(Extension.length<2)
+                {
+                    String extensionToAdd[]=file.getSubmittedFileName().split("\\.");
+                    current.setName(current.getName()+"."+extensionToAdd[Extension.length]);
+                }          
+                String file_name = UUID.randomUUID().toString() + "_" + file.getSubmittedFileName();
+                String currentDir = new java.io.File( "." ).getCanonicalPath();
+                String file_url = currentDir+"\\"+current.getName();
+                current.setUrl(file_name);
+                InputStream is = file.getInputStream();
+                byte[] buffer = new byte[is.available()];
+                is.read(buffer);
+                java.io.File targetFile = new java.io.File(file_url);
+                OutputStream outStream = new FileOutputStream(targetFile);
+                outStream.write(buffer);
+                System.out.println(currentDir+"|| WORKING");
+                JsfUtil.addSuccessMessage("File upload success");
+                
+                
+            } catch (IOException ex) {
             }
-            if(destination != null) {
-                destination.close();
-            }
         }
-        //System.out.println("||controllers.FileController.upload()|| WORKING");
-        System.out.println(currentDir+"|| WORKING");
-        
     }
     public FileController() {
     }
@@ -113,14 +117,14 @@ public class FileController implements Serializable {
 
     public String prepareView() throws FileNotFoundException, IOException {
         current = (File) getItems().getRowData();
-       
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
     
     
-    public void download(String name) throws FileNotFoundException, MalformedURLException, IOException
+    public void download() throws FileNotFoundException, MalformedURLException, IOException
     {  
+      String name =current.getName();
       String currentDir = new java.io.File( "." ).getCanonicalPath();
       URL website = new URL(new java.io.File(currentDir+"\\"+name).toURI().toURL().toString());
       try (InputStream in = website.openStream()) 
@@ -128,14 +132,13 @@ public class FileController implements Serializable {
         Path target = Paths.get(System.getProperty("user.home")+"\\Downloads\\"+name);
         Files.copy(in,target, StandardCopyOption.REPLACE_EXISTING);
       }
-      
-      
     }
+    
     public void downloadFile()
     {
          try {
             JsfUtil.addSuccessMessage("File download successed");
-            download(current.getName());
+            download();
         } catch (Exception e) {
              JsfUtil.addErrorMessage(e, "File download failed");
         }
@@ -148,12 +151,10 @@ public class FileController implements Serializable {
 
     public String create() {
         try {
-            upload(current.getUrl(),current.getName());
+            System.out.println(file.toString());
+            upload();
             current.setUrl("../"+current.getName());
-            getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("FileCreated"));          
-            
-            
+            getFacade().create(current);         
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));

@@ -25,7 +25,7 @@
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:inputText>
                     <h:outputLabel value="#{bundle.CreateFileLabel_url}" for="url" />
-                    <h:inputText id="url" value="#{fileController.selected.url}" title="#{bundle.CreateFileTitle_url}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_url}"/>
+                    <h:inputFile id="file" value="#{fileController.file}" />
                     <h:outputLabel value="#{bundle.CreateFileLabel_idtype}" for="idtype" />
                     <h:selectOneMenu id="idtype" value="#{fileController.selected.idtype}" title="#{bundle.CreateFileTitle_idtype}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_idtype}">
                         <f:selectItems value="#{typeFileController.itemsAvailableSelectOne}"/>
