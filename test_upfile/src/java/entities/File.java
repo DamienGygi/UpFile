@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package entities;
-
-import controllers.FileController;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
@@ -46,6 +44,7 @@ public class File implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idfile")
+    
     private Integer idfile;
     @Basic(optional = false)
     @NotNull
@@ -58,8 +57,6 @@ public class File implements Serializable {
     @Size(min = 1, max = 65535)
     @Column(name = "desciption")
     private String desciption;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "createdat")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdat;

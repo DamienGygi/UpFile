@@ -2,6 +2,7 @@ package controllers;
 import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
 import entities.File;
+import entities.UserUpfile;
 import facades.FileFacade;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +16,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import javax.ejb.EJB;
@@ -27,8 +31,9 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.Part;
-
 @Named("fileController")
 @SessionScoped
 public class FileController implements Serializable {
@@ -40,7 +45,16 @@ public class FileController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
     private Part file;
- 
+    private List<UserUpfile> actualUserList;
+    @PersistenceContext
+    private EntityManager em;
+   
+    
+    public List<UserUpfile> findUserByName (String name) 
+    { 
+        return em.createNamedQuery("UserUpfile.findByUsername").setParameter("username", name).setMaxResults(1).getResultList(); 
+    }
+
     public Part getFile() {
     return file;
     }
@@ -151,9 +165,15 @@ public class FileController implements Serializable {
 
     public String create() {
         try {
+            actualUserList=new ArrayList<>();
+            actualUserList=findUserByName(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+            UserUpfile actualUser= actualUserList.get(0);
+            current.setIduser(actualUser);
             System.out.println(file.toString());
             upload();
             current.setUrl("../"+current.getName());
+            Date date = new Date();
+            current.setCreatedat(date);
             getFacade().create(current);         
             return prepareCreate();
         } catch (Exception e) {

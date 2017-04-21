@@ -20,21 +20,13 @@
                     <h:inputText id="name" value="#{fileController.selected.name}" title="#{bundle.CreateFileTitle_name}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_name}"/>
                     <h:outputLabel value="#{bundle.CreateFileLabel_desciption}" for="desciption" />
                     <h:inputTextarea rows="4" cols="30" id="desciption" value="#{fileController.selected.desciption}" title="#{bundle.CreateFileTitle_desciption}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_desciption}"/>
-                    <h:outputLabel value="#{bundle.CreateFileLabel_createdat}" for="createdat" />
-                    <h:inputText id="createdat" value="#{fileController.selected.createdat}" title="#{bundle.CreateFileTitle_createdat}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_createdat}">
-                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                    </h:inputText>
                     <h:outputLabel value="#{bundle.CreateFileLabel_url}" for="url" />
                     <h:inputFile id="file" value="#{fileController.file}" />
                     <h:outputLabel value="#{bundle.CreateFileLabel_idtype}" for="idtype" />
                     <h:selectOneMenu id="idtype" value="#{fileController.selected.idtype}" title="#{bundle.CreateFileTitle_idtype}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_idtype}">
                         <f:selectItems value="#{typeFileController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateFileLabel_iduser}" for="iduser" />
-                    <h:selectOneMenu id="iduser" value="#{fileController.selected.iduser}" title="#{bundle.CreateFileTitle_iduser}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_iduser}">
-                        <f:selectItems value="#{userUpfileController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
+                    </h:panelGrid>
                 <br />
                 <h:commandLink action="#{fileController.create}" value="#{bundle.CreateFileSaveLink}" />
                 <br />
