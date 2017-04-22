@@ -15,14 +15,12 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateUserUpfileLabel_iduser}" for="iduser" />
-                    <h:inputText id="iduser" value="#{userUpfileController.selected.iduser}" title="#{bundle.CreateUserUpfileTitle_iduser}" required="true" requiredMessage="#{bundle.CreateUserUpfileRequiredMessage_iduser}"/>
                     <h:outputLabel value="#{bundle.CreateUserUpfileLabel_email}" for="email" />
                     <h:inputText id="email" value="#{userUpfileController.selected.email}" title="#{bundle.CreateUserUpfileTitle_email}" />
                     <h:outputLabel value="#{bundle.CreateUserUpfileLabel_username}" for="username" />
                     <h:inputText id="username" value="#{userUpfileController.selected.username}" title="#{bundle.CreateUserUpfileTitle_username}" />
                     <h:outputLabel value="#{bundle.CreateUserUpfileLabel_password}" for="password" />
-                    <h:inputText id="password" value="#{userUpfileController.selected.password}" title="#{bundle.CreateUserUpfileTitle_password}" />
+                    <h:inputSecret id="password" value="#{userUpfileController.selected.password}" title="#{bundle.CreateUserUpfileTitle_password}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{userUpfileController.create}" value="#{bundle.CreateUserUpfileSaveLink}" />

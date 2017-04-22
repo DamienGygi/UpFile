@@ -36,4 +36,11 @@ public class UserUpfileFacade extends AbstractFacade<UserUpfile> {
         return (UserUpfile) users.getSingleResult();
     }
     
+    public void addRoleUser(UserUpfile user) {
+        Query query = em.createNativeQuery("INSERT INTO user_role (username, rolename) " + " VALUES(?,?)");
+        query.setParameter(1, user.getUsername());
+        query.setParameter(2, "user");
+        query.executeUpdate();
+    }
+    
 }

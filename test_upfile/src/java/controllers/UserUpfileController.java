@@ -7,6 +7,8 @@ import facades.UserUpfileFacade;
 import java.io.IOException;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,7 +86,18 @@ public class UserUpfileController implements Serializable {
 
     public String create() {
         try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(current.getPassword().getBytes());
+            byte byteData[] = md.digest();
+
+            //convert the byte to hex format method 1
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < byteData.length; i++) {
+                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            current.setPassword(sb.toString());
             getFacade().create(current);
+            ejbFacade.addRoleUser(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("UserUpfileCreated"));
             return prepareCreate();
         } catch (Exception e) {
@@ -233,10 +246,11 @@ public class UserUpfileController implements Serializable {
             }
         }
     }
-            public void logout() throws IOException {
-                FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-                FacesContext.getCurrentInstance().getExternalContext()
-                    .redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/");
-        }
+
+    public void logout() throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/");
+    }
 
 }
