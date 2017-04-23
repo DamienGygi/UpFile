@@ -3,6 +3,7 @@ import controllers.util.JsfUtil;
 import controllers.util.PaginationHelper;
 import entities.File;
 import entities.UserUpfile;
+import entities.TypeFile;
 import facades.FileFacade;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -48,12 +49,31 @@ public class FileController implements Serializable {
     private List<UserUpfile> actualUserList;
     @PersistenceContext
     private EntityManager em;
-   
+    private String typeName;
+    private String userName;
+    
+    public String getTypeName()
+    {
+        return typeName;
+    }
+    public void setTypeName()
+    {
+        typeName=current.getIdtype().getName();
+    }
+   public String getUserName()
+    {
+        return userName;
+    }
+    public void setUserName()
+    {
+        userName=current.getIduser().getUsername();
+    }
     
     public List<UserUpfile> findUserByName (String name) 
     { 
         return em.createNamedQuery("UserUpfile.findByUsername").setParameter("username", name).setMaxResults(1).getResultList(); 
     }
+   
 
     public Part getFile() {
     return file;
@@ -132,6 +152,8 @@ public class FileController implements Serializable {
     public String prepareView() throws FileNotFoundException, IOException {
         current = (File) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
+        setTypeName();
+        setUserName();
         return "View";
     }
     

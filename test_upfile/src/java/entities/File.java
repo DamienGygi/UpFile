@@ -72,9 +72,10 @@ public class File implements Serializable {
     @ManyToOne(optional = false)
     private UserUpfile iduser;
 
+
     public File() {
     }
-
+  
     public File(Integer idfile) {
         this.idfile = idfile;
     }

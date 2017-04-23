@@ -20,12 +20,7 @@
                     <h:commandLink action="#{fileController.previous}" value="#{bundle.Previous} #{fileController.pagination.pageSize}" rendered="#{fileController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{fileController.next}" value="#{bundle.Next} #{fileController.pagination.pageSize}" rendered="#{fileController.pagination.hasNextPage}"/>&nbsp;
                     <h:dataTable value="#{fileController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFileTitle_idfile}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idfile}"/>
-                        </h:column>
+                        
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFileTitle_name}"/>
@@ -40,7 +35,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFileTitle_createdat}"/>
+                                <h:outputText value="Creation Date"/>
                             </f:facet>
                             <h:outputText value="#{item.createdat}">
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
@@ -48,21 +43,15 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFileTitle_url}"/>
+                                <h:outputText value="Type"/>
                             </f:facet>
-                            <h:outputText value="#{item.url}"/>
+                            <h:outputText value="#{item.idtype.name}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFileTitle_idtype}"/>
+                                <h:outputText value="User"/>
                             </f:facet>
-                            <h:outputText value="#{item.idtype}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFileTitle_iduser}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.iduser}"/>
+                            <h:outputText value="#{item.iduser.username}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

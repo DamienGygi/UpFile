@@ -15,7 +15,7 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewFileLabel_idfile}"/>
+                    <h:outputText value="ID"/>
                     <h:outputText value="#{fileController.selected.idfile}" title="#{bundle.ViewFileTitle_idfile}"/>
                     <h:outputText value="#{bundle.ViewFileLabel_name}"/>
                     <h:outputText value="#{fileController.selected.name}" title="#{bundle.ViewFileTitle_name}"/>
@@ -27,10 +27,10 @@
                     </h:outputText>
                     <h:outputText value="#{bundle.ViewFileLabel_url}"/>
                     <h:outputText value="#{fileController.selected.url}" title="#{bundle.ViewFileTitle_url}"/>
-                    <h:outputText value="#{bundle.ViewFileLabel_idtype}"/>
-                    <h:outputText value="#{fileController.selected.idtype}" title="#{bundle.ViewFileTitle_idtype}"/>
-                    <h:outputText value="#{bundle.ViewFileLabel_iduser}"/>
-                    <h:outputText value="#{fileController.selected.iduser}" title="#{bundle.ViewFileTitle_iduser}"/>
+                    <h:outputText value="Type"/>
+                    <h:outputText value="#{fileController.typeName}" title="#{bundle.ViewFileTitle_idtype}"/>
+                    <h:outputText value="User"/>
+                    <h:outputText value="#{fileController.userName}" title="#{bundle.ViewFileTitle_iduser}"/>
                 </h:panelGrid>
                 <br/>
                 <br/>

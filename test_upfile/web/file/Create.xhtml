@@ -24,7 +24,7 @@
                     <h:inputFile id="file" value="#{fileController.file}" />
                     <h:outputLabel value="#{bundle.CreateFileLabel_idtype}" for="idtype" />
                     <h:selectOneMenu id="idtype" value="#{fileController.selected.idtype}" title="#{bundle.CreateFileTitle_idtype}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_idtype}">
-                        <f:selectItems value="#{typeFileController.itemsAvailableSelectOne}"/>
+                        <f:selectItems value="#{typeFileController.itemsAvailableSelectOne}"  />
                     </h:selectOneMenu>
                     </h:panelGrid>
                 <br />

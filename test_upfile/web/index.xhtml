@@ -6,24 +6,23 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="Homepage"></h:outputText>
+            <h:outputText></h:outputText>
         </ui:define>
         <ui:define name="style">
             <h:outputStylesheet library="css" name="home.css"/>   
         </ui:define>
         <ui:define name="body">
-            Hello from Facelets
-            <br />
-            <h:link outcome="/file/List" value="Show All File Items"/>
-            <br />
-            <h:link outcome="/role/List" value="Show All Role Items"/>
-            <br />
-            <h:link outcome="/typeFile/List" value="Show All TypeFile Items"/>
-            <br />
-            <h:link outcome="/userUpfile/List" value="Show All UserUpfile Items"/>
-            <br />
-            <h:link outcome="/admin/index" value="To the admin section" /><br />
-            <h:link outcome="/user/index" value="To the user section" />
+            <br/>
+            <h:graphicImage value="resources/images/Logo.png" />
+            <br/>
+            Welcome to UpFile !
+            <br/>
+            This site was created to share your files with your friends.
+            <br/>
+            You can easely download your files using the create file option of Upfile !
+            <br/>
+            Upload and Share your Knowledge !
+            
         </ui:define>
     </ui:composition>
 

@@ -46,7 +46,7 @@ public class TypeFile implements Serializable {
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idtype")
     private Collection<File> fileCollection;
-
+    
     public TypeFile() {
     }
 
@@ -101,7 +101,7 @@ public class TypeFile implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.TypeFile[ idtype=" + idtype + " ]";
+        return name;
     }
     
 }
