@@ -36,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "File.findByIdfile", query = "SELECT f FROM File f WHERE f.idfile = :idfile"),
     @NamedQuery(name = "File.findByName", query = "SELECT f FROM File f WHERE f.name = :name"),
     @NamedQuery(name = "File.findByCreatedat", query = "SELECT f FROM File f WHERE f.createdat = :createdat"),
-    @NamedQuery(name = "File.findByUrl", query = "SELECT f FROM File f WHERE f.url = :url")})
+    @NamedQuery(name = "File.findByUrl", query = "SELECT f FROM File f WHERE f.url = :url")
+})
 public class File implements Serializable {
 
     private static final long serialVersionUID = 1L;
