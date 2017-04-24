@@ -20,7 +20,7 @@
                     <h:commandLink action="#{fileController.previous}" value="#{bundle.Previous} #{fileController.pagination.pageSize}" rendered="#{fileController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{fileController.next}" value="#{bundle.Next} #{fileController.pagination.pageSize}" rendered="#{fileController.pagination.hasNextPage}"/>&nbsp;
                     <h:dataTable value="#{fileController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        
+
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFileTitle_name}"/>
@@ -59,17 +59,16 @@
                             </f:facet>
                             <h:commandLink action="#{fileController.prepareView}" value="#{bundle.ListFileViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{fileController.prepareEdit}" value="#{bundle.ListFileEditLink}"/>
+                            <h:commandLink rendered="#{request.isUserInRole('admin')}" action="#{fileController.prepareEdit}" value="#{bundle.ListFileEditLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{fileController.destroy}" value="#{bundle.ListFileDestroyLink}"/>
+                            <h:commandLink rendered="#{request.isUserInRole('admin')}" action="#{fileController.destroy}" value="#{bundle.ListFileDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{fileController.prepareCreate}" value="#{bundle.ListFileCreateLink}"/>
+                <h:commandLink rendered="${not empty request.remoteUser}" action="#{fileController.prepareCreate}" value="#{bundle.ListFileCreateLink}"/>
                 <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListFileIndexLink}"/>
+
             </h:form>
         </ui:define>
     </ui:composition>

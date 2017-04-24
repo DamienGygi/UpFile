@@ -23,13 +23,8 @@
                     <h:inputSecret id="password" value="#{userUpfileController.selected.password}" title="#{bundle.CreateUserUpfileTitle_password}" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{userUpfileController.create}" value="#{bundle.CreateUserUpfileSaveLink}" />
+                <h:commandLink action="#{userUpfileController.create}" value="Subscribe" />
                 <br />
-                <br />
-                <h:commandLink action="#{userUpfileController.prepareList}" value="#{bundle.CreateUserUpfileShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateUserUpfileIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>

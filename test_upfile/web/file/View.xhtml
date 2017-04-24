@@ -15,8 +15,8 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="ID"/>
-                    <h:outputText value="#{fileController.selected.idfile}" title="#{bundle.ViewFileTitle_idfile}"/>
+                    <!--<h:outputText value="ID"/>
+                    <h:outputText value="#{fileController.selected.idfile}" title="#{bundle.ViewFileTitle_idfile}"/>-->
                     <h:outputText value="#{bundle.ViewFileLabel_name}"/>
                     <h:outputText value="#{fileController.selected.name}" title="#{bundle.ViewFileTitle_name}"/>
                     <h:outputText value="#{bundle.ViewFileLabel_desciption}"/>
@@ -25,8 +25,8 @@
                     <h:outputText value="#{fileController.selected.createdat}" title="#{bundle.ViewFileTitle_createdat}">
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:outputText>
-                    <h:outputText value="#{bundle.ViewFileLabel_url}"/>
-                    <h:outputText value="#{fileController.selected.url}" title="#{bundle.ViewFileTitle_url}"/>
+                    <!--<h:outputText value="#{bundle.ViewFileLabel_url}"/>
+                    <h:outputText value="#{fileController.selected.url}" title="#{bundle.ViewFileTitle_url}"/>-->
                     <h:outputText value="Type"/>
                     <h:outputText value="#{fileController.typeName}" title="#{bundle.ViewFileTitle_idtype}"/>
                     <h:outputText value="User"/>
