@@ -21,8 +21,6 @@
                     <h:inputText id="username" value="#{userUpfileController.selected.username}" title="#{bundle.CreateUserUpfileTitle_username}" />
                     <h:outputLabel value="#{bundle.CreateUserUpfileLabel_password}" for="password" />
                     <h:inputSecret id="password" value="#{userUpfileController.selected.password}" title="#{bundle.CreateUserUpfileTitle_password}" />
-                    <h:outputLabel value="#{bundle.CreateUserUpfileLabel_password}" for="confirm_password" />
-                    <h:inputSecret id="confirm_password" value="#{userUpfileController.selected.password}" title="#{bundle.CreateUserUpfileTitle_password}" />
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{userUpfileController.create}" value="#{bundle.CreateUserUpfileSaveLink}" />
