@@ -34,20 +34,8 @@
                 </h:panelGrid>
                 <br/>
                 <br/>
-                <h:commandLink action="#{fileController.downloadFile}" value="Download" immediate="true"/>
+                <h:commandLink rendered="${not empty request.remoteUser}" action="#{fileController.downloadFile}" value="Download" immediate="true"/>
                 <br />
-                <h:commandLink action="#{fileController.destroyAndView}" value="#{bundle.ViewFileDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewFileEditLink}"/>
-                <br />
-                <h:commandLink action="#{fileController.prepareCreate}" value="#{bundle.ViewFileCreateLink}" />
-                <br />
-                <h:commandLink action="#{fileController.prepareList}" value="#{bundle.ViewFileShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewFileIndexLink}"/>
-
             </h:form>
         </ui:define>
     </ui:composition>

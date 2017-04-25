@@ -14,8 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  *
  * @author damien.gygi
  */
-public class TestLoginUpfile {
-
+public class ViewFile {
     private static WebDriver driver;
     private static String baseUrl;
     private static boolean acceptNextAlert = true;
@@ -32,9 +31,9 @@ public class TestLoginUpfile {
         
         driver.get("http://localhost:8080/test_upfile/");
         Thread.sleep(1000);
-        driver.findElement(By.linkText("login")).click();
+        driver.findElement(By.linkText("Liste de fichier")).click();
         Thread.sleep(1000);
-        driver.findElement(By.name("j_username")).clear();
+        /*driver.findElement(By.name("j_username")).clear();
         driver.findElement(By.name("j_username")).sendKeys("test");
         
         Thread.sleep(1000);
@@ -43,8 +42,8 @@ public class TestLoginUpfile {
         Thread.sleep(1000);
         
         driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+        */
         //driver.close();
         //driver.quit();
     }
-    
 }
