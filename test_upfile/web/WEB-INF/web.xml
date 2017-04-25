@@ -27,7 +27,9 @@
             <web-resource-name>AdminResource</web-resource-name>
             <description/>
             <url-pattern>/faces/typeFile/*</url-pattern>
-            <url-pattern>/faces/role/*</url-pattern>            
+            <url-pattern>/faces/role/*</url-pattern>
+            <url-pattern>/faces/file/*</url-pattern>
+            <url-pattern>/faces/file/Create.xhtml</url-pattern>           
             <url-pattern>/faces/userUpfile/List.xhtml</url-pattern>
             <url-pattern>/faces/userUpfile/View.xhtml</url-pattern>
             <url-pattern>/faces/userUpfile/Edit.xhtml</url-pattern>
