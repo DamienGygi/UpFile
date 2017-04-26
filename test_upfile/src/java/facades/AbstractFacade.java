@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package facades;
-
+import entities.UserUpfile;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -50,6 +50,12 @@ public abstract class AbstractFacade<T> {
         cq.select(cq.from(entityClass));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         q.setMaxResults(range[1] - range[0] + 1);
+        q.setFirstResult(range[0]);
+        return q.getResultList();
+    }
+    public List<T> findRangebyUser(int[] range,UserUpfile us ) {
+  
+        javax.persistence.Query q = getEntityManager().createQuery("SELECT f FROM File f WHERE f.iduser =:us");
         q.setFirstResult(range[0]);
         return q.getResultList();
     }

@@ -51,7 +51,8 @@ public class FileController implements Serializable {
     private EntityManager em;
     private String typeName;
     private String userName;
-    
+    private int researchChoice=0;
+   
     public String getTypeName()
     {
         return typeName;
@@ -137,13 +138,20 @@ public class FileController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
+                    if(researchChoice==0){return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));}
+                    else
+                    {
+                    actualUserList=findUserByName(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+                    UserUpfile actualUser= actualUserList.get(0);
+                    return new ListDataModel(em.createNamedQuery("File.findByUser").setParameter("iduser", actualUser).setMaxResults((getPageFirstItem() + getPageSize())-getPageFirstItem()+1).setFirstResult(getPageFirstItem()).getResultList());
+                    }
+                    
                 }
             };
         }
         return pagination;
     }
-
+    
     public String prepareList() {
         recreateModel();
         return "List";
@@ -276,9 +284,15 @@ public class FileController implements Serializable {
     }
 
     public DataModel getItems() {
-        if (items == null) {
-            items = getPagination().createPageDataModel();
-        }
+
+        items = getPagination().createPageDataModel();
+        return items;
+    }
+    
+    public DataModel getItemsUser() {
+        researchChoice=1;
+        getItems();
+        researchChoice=0;
         return items;
     }
 
