@@ -15,8 +15,6 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <!--<h:outputText value="ID"/>
-                    <h:outputText value="#{fileController.selected.idfile}" title="#{bundle.ViewFileTitle_idfile}"/>-->
                     <h:outputText value="#{bundle.ViewFileLabel_name}"/>
                     <h:outputText value="#{fileController.selected.name}" title="#{bundle.ViewFileTitle_name}"/>
                     <h:outputText value="#{bundle.ViewFileLabel_desciption}"/>
@@ -25,8 +23,6 @@
                     <h:outputText value="#{fileController.selected.createdat}" title="#{bundle.ViewFileTitle_createdat}">
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:outputText>
-                    <!--<h:outputText value="#{bundle.ViewFileLabel_url}"/>
-                    <h:outputText value="#{fileController.selected.url}" title="#{bundle.ViewFileTitle_url}"/>-->
                     <h:outputText value="Type"/>
                     <h:outputText value="#{fileController.typeName}" title="#{bundle.ViewFileTitle_idtype}"/>
                     <h:outputText value="User"/>
@@ -34,20 +30,8 @@
                 </h:panelGrid>
                 <br/>
                 <br/>
-                <h:commandLink action="#{fileController.downloadFile}" value="Download" immediate="true"/>
+                <h:commandLink rendered="${not empty request.remoteUser}" action="#{fileController.downloadFile}" value="Download" immediate="true"/>
                 <br />
-                <h:commandLink action="#{fileController.destroyAndView}" value="#{bundle.ViewFileDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewFileEditLink}"/>
-                <br />
-                <h:commandLink action="#{fileController.prepareCreate}" value="#{bundle.ViewFileCreateLink}" />
-                <br />
-                <h:commandLink action="#{fileController.prepareList}" value="#{bundle.ViewFileShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewFileIndexLink}"/>
-
             </h:form>
         </ui:define>
     </ui:composition>

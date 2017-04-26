@@ -20,11 +20,17 @@
                             <h:link outcome="/file/List.xhtml" value="Liste de fichiers" />
                             <h:link outcome="/file/ListUser.xhtml" value="Mes fichiers"/>
                             <h:link outcome="/faces/file/Create.xhtml" value="Créer un fichier"/>
+<<<<<<< HEAD
                             
                         </h:panelGroup>
                         <h:panelGroup rendered="#{request.isUserInRole('admin')}">
                             
                             <h:link outcome="/file/List" value="Fichiers"/>
+=======
+                            <h:link outcome="/faces/file/MyList.xhtml" value="TODO: Mes fichiers"/>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{request.isUserInRole('admin')}">
+>>>>>>> ecf17994e2c61dd37f650db937d26c0a2d8928e1
                             <h:link outcome="/role/List" value="Roles"/>
                             <h:link outcome="/typeFile/List" value="Types"/>
                             <h:link outcome="/userUpfile/List" value="Users"/>
