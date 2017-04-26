@@ -16,8 +16,8 @@
                 <div class="nav-wrapper">
                     <div class="container">
                         <h:link outcome="/index.xhtml" value="Home"/>
+                        <h:link outcome="/file/List.xhtml" value="Liste de fichiers" />
                         <h:panelGroup rendered="#{request.isUserInRole('user')}">
-                            <h:link outcome="/file/List.xhtml" value="Liste de fichiers" />
                             <h:link outcome="/file/ListUser.xhtml" value="Mes fichiers"/>
                             <h:link outcome="/faces/file/Create.xhtml" value="Créer un fichier"/>
                         </h:panelGroup>
