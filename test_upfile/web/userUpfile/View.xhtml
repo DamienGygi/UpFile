@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewUserUpfileTitle}"></h:outputText>
+            <h:outputText value="L'utilisateur"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -15,27 +15,25 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewUserUpfileLabel_iduser}"/>
-                    <h:outputText value="#{userUpfileController.selected.iduser}" title="#{bundle.ViewUserUpfileTitle_iduser}"/>
-                    <h:outputText value="#{bundle.ViewUserUpfileLabel_email}"/>
+                    <h:outputText value="Email"/>
                     <h:outputText value="#{userUpfileController.selected.email}" title="#{bundle.ViewUserUpfileTitle_email}"/>
-                    <h:outputText value="#{bundle.ViewUserUpfileLabel_username}"/>
+                    <h:outputText value="Pseudo"/>
                     <h:outputText value="#{userUpfileController.selected.username}" title="#{bundle.ViewUserUpfileTitle_username}"/>
-                    <h:outputText value="#{bundle.ViewUserUpfileLabel_password}"/>
+                    <h:outputText value="Mot de passe"/>
                     <h:outputText value="#{userUpfileController.selected.password}" title="#{bundle.ViewUserUpfileTitle_password}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{userUpfileController.destroyAndView}" value="#{bundle.ViewUserUpfileDestroyLink}"/>
+                <h:commandLink action="#{userUpfileController.destroyAndView}" value="Supprimer"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewUserUpfileEditLink}"/>
+                <h:link outcome="Edit" value="Editer"/>
                 <br />
-                <h:commandLink action="#{userUpfileController.prepareCreate}" value="#{bundle.ViewUserUpfileCreateLink}" />
+                <h:commandLink action="#{userUpfileController.prepareCreate}" value="Créer un nouvel utilisateur" />
                 <br />
-                <h:commandLink action="#{userUpfileController.prepareList}" value="#{bundle.ViewUserUpfileShowAllLink}"/>
+                <h:commandLink action="#{userUpfileController.prepareList}" value="Tous les utilisateurs"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewUserUpfileIndexLink}"/>
+                <h:link outcome="/index" value="Accueil"/>
 
             </h:form>
         </ui:define>

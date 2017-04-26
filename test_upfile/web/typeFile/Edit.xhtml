@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.EditTypeFileTitle}"></h:outputText>
+            <h:outputText value="Editer un type"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -15,20 +15,19 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditTypeFileLabel_idtype}" for="idtype" />
-                    <h:inputText id="idtype" value="#{typeFileController.selected.idtype}" title="#{bundle.EditTypeFileTitle_idtype}" required="true" requiredMessage="#{bundle.EditTypeFileRequiredMessage_idtype}"/>
-                    <h:outputLabel value="#{bundle.EditTypeFileLabel_name}" for="name" />
+                  
+                    <h:outputLabel value="Nom" for="name" />
                     <h:inputText id="name" value="#{typeFileController.selected.name}" title="#{bundle.EditTypeFileTitle_name}" />
                 </h:panelGrid>
-                <h:commandLink action="#{typeFileController.update}" value="#{bundle.EditTypeFileSaveLink}"/>
+                <h:commandLink action="#{typeFileController.update}" value="Enregirster"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditTypeFileViewLink}"/>
+                <h:link outcome="View" value="Informations du type"/>
                 <br />
-                <h:commandLink action="#{typeFileController.prepareList}" value="#{bundle.EditTypeFileShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{typeFileController.prepareList}" value="Tous les types" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.EditTypeFileIndexLink}" />
+                <h:link outcome="/index" value="Accueil" />
             </h:form>
         </ui:define>
     </ui:composition>

@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateRoleTitle}"></h:outputText>
+            <h:outputText value="Création de rôle"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -15,19 +15,17 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateRoleLabel_idrole}" for="idrole" />
-                    <h:inputText id="idrole" value="#{roleController.selected.idrole}" title="#{bundle.CreateRoleTitle_idrole}" required="true" requiredMessage="#{bundle.CreateRoleRequiredMessage_idrole}"/>
-                    <h:outputLabel value="#{bundle.CreateRoleLabel_rolename}" for="rolename" />
-                    <h:inputText id="rolename" value="#{roleController.selected.rolename}" title="#{bundle.CreateRoleTitle_rolename}" />
+                    <h:outputLabel value="Nom" for="rolename" />
+                    <h:inputText id="rolename" value="Nom" title="#{bundle.CreateRoleTitle_rolename}" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{roleController.create}" value="#{bundle.CreateRoleSaveLink}" />
+                <h:commandLink action="#{roleController.create}" value="Créer" />
                 <br />
                 <br />
-                <h:commandLink action="#{roleController.prepareList}" value="#{bundle.CreateRoleShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{roleController.prepareList}" value="Voir tous les rôles" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.CreateRoleIndexLink}"/>
+                <h:link outcome="/index" value="Accueil"/>
             </h:form>
         </ui:define>
     </ui:composition>

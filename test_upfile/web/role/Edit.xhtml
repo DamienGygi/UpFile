@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.EditRoleTitle}"></h:outputText>
+            <h:outputText value="Edition de rôle"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -15,20 +15,19 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditRoleLabel_idrole}" for="idrole" />
-                    <h:inputText id="idrole" value="#{roleController.selected.idrole}" title="#{bundle.EditRoleTitle_idrole}" required="true" requiredMessage="#{bundle.EditRoleRequiredMessage_idrole}"/>
-                    <h:outputLabel value="#{bundle.EditRoleLabel_rolename}" for="rolename" />
+                    
+                    <h:outputLabel value="Name" for="rolename" />
                     <h:inputText id="rolename" value="#{roleController.selected.rolename}" title="#{bundle.EditRoleTitle_rolename}" />
                 </h:panelGrid>
-                <h:commandLink action="#{roleController.update}" value="#{bundle.EditRoleSaveLink}"/>
+                <h:commandLink action="#{roleController.update}" value="Enregistrer"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditRoleViewLink}"/>
+                <h:link outcome="View" value="Informations du rôle"/>
                 <br />
-                <h:commandLink action="#{roleController.prepareList}" value="#{bundle.EditRoleShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{roleController.prepareList}" value="Tous les rôles" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.EditRoleIndexLink}" />
+                <h:link outcome="/index" value="Accueil" />
             </h:form>
         </ui:define>
     </ui:composition>

@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListTypeFileTitle}"></h:outputText>
+            <h:outputText value="Tous les types"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
@@ -28,7 +28,7 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTypeFileTitle_name}"/>
+                                <h:outputText value="Nom"/>
                             </f:facet>
                             <h:outputText value="#{item.name}"/>
                         </h:column>
@@ -36,19 +36,19 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{typeFileController.prepareView}" value="#{bundle.ListTypeFileViewLink}"/>
+                            <h:commandLink action="#{typeFileController.prepareView}" value="Voir"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{typeFileController.prepareEdit}" value="#{bundle.ListTypeFileEditLink}"/>
+                            <h:commandLink action="#{typeFileController.prepareEdit}" value="Editer"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{typeFileController.destroy}" value="#{bundle.ListTypeFileDestroyLink}"/>
+                            <h:commandLink action="#{typeFileController.destroy}" value="Supprimer"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{typeFileController.prepareCreate}" value="#{bundle.ListTypeFileCreateLink}"/>
+                <h:commandLink action="#{typeFileController.prepareCreate}" value="Créer un type"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListTypeFileIndexLink}"/>
+                <h:link outcome="/index" value="Accueil"/>
             </h:form>
         </ui:define>
     </ui:composition>

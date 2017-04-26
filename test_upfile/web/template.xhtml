@@ -15,7 +15,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <div class="container">
-                        <h:link outcome="/index.xhtml" value="Home"/>
+                        <h:link outcome="/index.xhtml" value="Accueil"/>
                         <h:link outcome="/file/List.xhtml" value="Liste de fichiers" />
                         <h:panelGroup rendered="#{request.isUserInRole('user')}">
                             <h:link outcome="/file/ListUser.xhtml" value="Mes fichiers"/>
@@ -23,19 +23,19 @@
                         </h:panelGroup>
                         <h:panelGroup rendered="#{request.isUserInRole('admin')}">
 
-                            <h:link outcome="/role/List" value="Roles"/>
+                            <h:link outcome="/role/List" value="Rôles"/>
                             <h:link outcome="/typeFile/List" value="Types"/>
-                            <h:link outcome="/userUpfile/List" value="Users"/>
+                            <h:link outcome="/userUpfile/List" value="Utilisateurs"/>
                         </h:panelGroup>
                         <h:panelGroup rendered="${empty request.remoteUser}">
                             <div class="rightmenu">
-                                    <h:link outcome="/faces/userUpfile/Create.xhtml" value="Subscribe"/>
-                                    <h:link outcome="/login/login.xhtml" value="login"/>
+                                    <h:link outcome="/faces/userUpfile/Create.xhtml" value="S'inscrire"/>
+                                    <h:link outcome="/login/login.xhtml" value="Se connecter"/>
                             </div> 
                         </h:panelGroup>
                         <h:panelGroup rendered="${not empty request.remoteUser}">
                                 <div class="rightmenu">
-                                    <h:commandLink action="#{userUpfileController.logout()}" value="logout"/>
+                                    <h:commandLink action="#{userUpfileController.logout()}" value="Déconnecter"/>
                                 </div> 
                         </h:panelGroup>
                     </div>

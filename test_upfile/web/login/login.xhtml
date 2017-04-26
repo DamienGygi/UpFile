@@ -7,16 +7,16 @@
     
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="Login"></h:outputText>
+            <h:outputText value="Bienvenue "></h:outputText>
         </ui:define>
         <ui:define name="body">
             <p header="Login From">
                 <form method="POST" action="j_security_check">
-                    Username: <input type="text" name="j_username" />
-                    Password: <input type="password" name="j_password" />
+                    Pseudo <input type="text" name="j_username" />
+                    Mot de passe <input type="password" name="j_password" />
                     <br />
-                    <input type="submit" value="Login" />
-                    <input type="reset" value="Reset" />
+                    <input type="submit" value="Se connecter" />
+                    <input type="reset" value="Annuler" />
                 </form>
             </p>
         </ui:define>

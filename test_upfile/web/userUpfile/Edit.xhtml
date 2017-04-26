@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.EditUserUpfileTitle}"></h:outputText>
+            <h:outputText value="Editer l'utilisateur"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -15,24 +15,23 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditUserUpfileLabel_iduser}" for="iduser" />
-                    <h:inputText id="iduser" value="#{userUpfileController.selected.iduser}" title="#{bundle.EditUserUpfileTitle_iduser}" required="true" requiredMessage="#{bundle.EditUserUpfileRequiredMessage_iduser}"/>
-                    <h:outputLabel value="#{bundle.EditUserUpfileLabel_email}" for="email" />
+                    
+                    <h:outputLabel value="Email" for="email" />
                     <h:inputText id="email" value="#{userUpfileController.selected.email}" title="#{bundle.EditUserUpfileTitle_email}" />
-                    <h:outputLabel value="#{bundle.EditUserUpfileLabel_username}" for="username" />
+                    <h:outputLabel value="Pseudo" for="username" />
                     <h:inputText id="username" value="#{userUpfileController.selected.username}" title="#{bundle.EditUserUpfileTitle_username}" />
-                    <h:outputLabel value="#{bundle.EditUserUpfileLabel_password}" for="password" />
+                    <h:outputLabel value="Mot de passe" for="password" />
                     <h:inputText id="password" value="#{userUpfileController.selected.password}" title="#{bundle.EditUserUpfileTitle_password}" />
                 </h:panelGrid>
-                <h:commandLink action="#{userUpfileController.update}" value="#{bundle.EditUserUpfileSaveLink}"/>
+                <h:commandLink action="#{userUpfileController.update}" value="Enregistrer"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditUserUpfileViewLink}"/>
+                <h:link outcome="View" value="Informations de l'utilisateur"/>
                 <br />
-                <h:commandLink action="#{userUpfileController.prepareList}" value="#{bundle.EditUserUpfileShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{userUpfileController.prepareList}" value="Tous les utilisateurs" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.EditUserUpfileIndexLink}" />
+                <h:link outcome="/index" value="Accueil" />
             </h:form>
         </ui:define>
     </ui:composition>

@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewTypeFileTitle}"></h:outputText>
+            <h:outputText value="Le type"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -17,21 +17,21 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewTypeFileLabel_idtype}"/>
                     <h:outputText value="#{typeFileController.selected.idtype}" title="#{bundle.ViewTypeFileTitle_idtype}"/>
-                    <h:outputText value="#{bundle.ViewTypeFileLabel_name}"/>
+                    <h:outputText value="Nom"/>
                     <h:outputText value="#{typeFileController.selected.name}" title="#{bundle.ViewTypeFileTitle_name}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{typeFileController.destroyAndView}" value="#{bundle.ViewTypeFileDestroyLink}"/>
+                <h:commandLink action="#{typeFileController.destroyAndView}" value="Supprimer"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewTypeFileEditLink}"/>
+                <h:link outcome="Edit" value="Editer"/>
                 <br />
-                <h:commandLink action="#{typeFileController.prepareCreate}" value="#{bundle.ViewTypeFileCreateLink}" />
+                <h:commandLink action="#{typeFileController.prepareCreate}" value="Créer" />
                 <br />
-                <h:commandLink action="#{typeFileController.prepareList}" value="#{bundle.ViewTypeFileShowAllLink}"/>
+                <h:commandLink action="#{typeFileController.prepareList}" value="Tous les types"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewTypeFileIndexLink}"/>
+                <h:link outcome="/index" value="Accueil"/>
 
             </h:form>
         </ui:define>

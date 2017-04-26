@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.CreateFileTitle}"></h:outputText>
+            <h:outputText value="Création de fichier"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -16,11 +16,11 @@
             <h:form enctype="multipart/form-data">
                 <h:panelGrid columns="2">
                     
-                    <h:outputLabel value="#{bundle.CreateFileLabel_name}" for="name" />
+                    <h:outputLabel value="Nom" for="name" />
                     <h:inputText id="name" value="#{fileController.selected.name}" title="#{bundle.CreateFileTitle_name}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.CreateFileLabel_desciption}" for="desciption" />
+                    <h:outputLabel value="Description" for="desciption" />
                     <h:inputTextarea rows="4" cols="30" id="desciption" value="#{fileController.selected.desciption}" title="#{bundle.CreateFileTitle_desciption}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_desciption}"/>
-                    <h:outputLabel value="#{bundle.CreateFileLabel_url}" for="url" />
+                    <h:outputLabel value="URL" for="url" />
                     <h:inputFile id="file" value="#{fileController.file}" />
                     <h:outputLabel value="Type" for="idtype" />
                     <h:selectOneMenu id="idtype" value="#{fileController.selected.idtype}" title="#{bundle.CreateFileTitle_idtype}" required="true" requiredMessage="#{bundle.CreateFileRequiredMessage_idtype}">
@@ -28,10 +28,10 @@
                     </h:selectOneMenu>
                     </h:panelGrid>
                 <br />
-                <h:commandLink action="#{fileController.create}" value="#{bundle.CreateFileSaveLink}" />
+                <h:commandLink action="#{fileController.create}" value="Créer" />
                 <br />
                 <br />
-                <h:commandLink action="#{fileController.prepareList}" value="#{bundle.CreateFileShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{fileController.prepareList}" value="Tous les fichiers" immediate="true"/>
                 <br />
             </h:form>
         </ui:define>

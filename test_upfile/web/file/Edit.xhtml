@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.EditFileTitle}"></h:outputText>
+            <h:outputText value="Modification de fichier"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -15,36 +15,28 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditFileLabel_idfile}" for="idfile" />
-                    <h:inputText id="idfile" value="#{fileController.selected.idfile}" title="#{bundle.EditFileTitle_idfile}" required="true" requiredMessage="#{bundle.EditFileRequiredMessage_idfile}"/>
-                    <h:outputLabel value="#{bundle.EditFileLabel_name}" for="name" />
-                    <h:inputText id="name" value="#{fileController.selected.name}" title="#{bundle.EditFileTitle_name}" required="true" requiredMessage="#{bundle.EditFileRequiredMessage_name}"/>
-                    <h:outputLabel value="#{bundle.EditFileLabel_desciption}" for="desciption" />
+                    <h:outputLabel value="Nom" for="name" />
+                    <h:inputText id="name" disabled="true" value="#{fileController.selected.name}" title="#{bundle.EditFileTitle_name}" required="true" requiredMessage="#{bundle.EditFileRequiredMessage_name}"/>
+                    <h:outputLabel value="Description" for="desciption" />
                     <h:inputTextarea rows="4" cols="30" id="desciption" value="#{fileController.selected.desciption}" title="#{bundle.EditFileTitle_desciption}" required="true" requiredMessage="#{bundle.EditFileRequiredMessage_desciption}"/>
-                    <h:outputLabel value="#{bundle.EditFileLabel_createdat}" for="createdat" />
-                    <h:inputText id="createdat" value="#{fileController.selected.createdat}" title="#{bundle.EditFileTitle_createdat}" required="true" requiredMessage="#{bundle.EditFileRequiredMessage_createdat}">
+                    <h:outputLabel value="Date de création" for="createdat" />
+                    <h:inputText id="createdat" disabled="true" value="#{fileController.selected.createdat}" title="#{bundle.EditFileTitle_createdat}" required="true" requiredMessage="#{bundle.EditFileRequiredMessage_createdat}">
                         <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                     </h:inputText>
-                    <h:outputLabel value="#{bundle.EditFileLabel_url}" for="url" />
-                    <h:inputText id="url" value="#{fileController.selected.url}" title="#{bundle.EditFileTitle_url}" required="true" requiredMessage="#{bundle.EditFileRequiredMessage_url}"/>
-                    <h:outputLabel value="#{bundle.EditFileLabel_idtype}" for="idtype" />
+                    <h:outputLabel value="Type du fichier" for="idtype" />
                     <h:selectOneMenu id="idtype" value="#{fileController.selected.idtype}" title="#{bundle.EditFileTitle_idtype}" required="true" requiredMessage="#{bundle.EditFileRequiredMessage_idtype}">
                         <f:selectItems value="#{typeFileController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditFileLabel_iduser}" for="iduser" />
-                    <h:selectOneMenu id="iduser" value="#{fileController.selected.iduser}" title="#{bundle.EditFileTitle_iduser}" required="true" requiredMessage="#{bundle.EditFileRequiredMessage_iduser}">
-                        <f:selectItems value="#{userUpfileController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{fileController.update}" value="#{bundle.EditFileSaveLink}"/>
+                    </h:panelGrid>
+                <h:commandLink action="#{fileController.update}" value="Enregistrer"/>
                 <br />
                 <br />
-                <h:link outcome="View" value="#{bundle.EditFileViewLink}"/>
+                <h:link outcome="View" value="Informations du fichiers"/>
                 <br />
-                <h:commandLink action="#{fileController.prepareList}" value="#{bundle.EditFileShowAllLink}" immediate="true"/>
+                <h:commandLink action="#{fileController.prepareList}" value="Voir tous les fichiers" immediate="true"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.EditFileIndexLink}" />
+                <h:link outcome="/index" value="Accueil" />
             </h:form>
         </ui:define>
     </ui:composition>

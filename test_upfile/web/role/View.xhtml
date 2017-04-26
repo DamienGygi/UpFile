@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewRoleTitle}"></h:outputText>
+            <h:outputText value="Le rôle"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:panelGroup id="messagePanel" layout="block">
@@ -15,23 +15,23 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewRoleLabel_idrole}"/>
+                    <h:outputText  value="#{bundle.ViewRoleLabel_idrole}"/>
                     <h:outputText value="#{roleController.selected.idrole}" title="#{bundle.ViewRoleTitle_idrole}"/>
-                    <h:outputText value="#{bundle.ViewRoleLabel_rolename}"/>
+                    <h:outputText value="Nom"/>
                     <h:outputText value="#{roleController.selected.rolename}" title="#{bundle.ViewRoleTitle_rolename}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{roleController.destroyAndView}" value="#{bundle.ViewRoleDestroyLink}"/>
+                <h:commandLink action="#{roleController.destroyAndView}" value="Supprimer"/>
                 <br />
                 <br />
-                <h:link outcome="Edit" value="#{bundle.ViewRoleEditLink}"/>
+                <h:link outcome="Edit" value="Editer"/>
                 <br />
-                <h:commandLink action="#{roleController.prepareCreate}" value="#{bundle.ViewRoleCreateLink}" />
+                <h:commandLink action="#{roleController.prepareCreate}" value="Créer un rôle" />
                 <br />
-                <h:commandLink action="#{roleController.prepareList}" value="#{bundle.ViewRoleShowAllLink}"/>
+                <h:commandLink action="#{roleController.prepareList}" value="#Tous les rôles}"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ViewRoleIndexLink}"/>
+                <h:link outcome="/index" value="Accueil"/>
 
             </h:form>
         </ui:define>

@@ -7,7 +7,7 @@
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
-            <h:outputText value="#{bundle.ListUserUpfileTitle}"></h:outputText>
+            <h:outputText value="Tous les utilisateurs"></h:outputText>
         </ui:define>
         <ui:define name="body">
             <h:form styleClass="jsfcrud_list_form">
@@ -28,19 +28,19 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUserUpfileTitle_email}"/>
+                                <h:outputText value="Email"/>
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUserUpfileTitle_username}"/>
+                                <h:outputText value="Pseudo"/>
                             </f:facet>
                             <h:outputText value="#{item.username}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUserUpfileTitle_password}"/>
+                                <h:outputText value="Mot de passe"/>
                             </f:facet>
                             <h:outputText value="#{item.password}"/>
                         </h:column>
@@ -48,19 +48,19 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{userUpfileController.prepareView}" value="#{bundle.ListUserUpfileViewLink}"/>
+                            <h:commandLink action="#{userUpfileController.prepareView}" value="Voir"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{userUpfileController.prepareEdit}" value="#{bundle.ListUserUpfileEditLink}"/>
+                            <h:commandLink action="#{userUpfileController.prepareEdit}" value="Editer"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{userUpfileController.destroy}" value="#{bundle.ListUserUpfileDestroyLink}"/>
+                            <h:commandLink action="#{userUpfileController.destroy}" value="Supprimer"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{userUpfileController.prepareCreate}" value="#{bundle.ListUserUpfileCreateLink}"/>
+                <h:commandLink action="#{userUpfileController.prepareCreate}" value="Créer un utilisateur"/>
                 <br />
                 <br />
-                <h:link outcome="/index" value="#{bundle.ListUserUpfileIndexLink}"/>
+                <h:link outcome="/index" value="Accueil"/>
             </h:form>
         </ui:define>
     </ui:composition>
