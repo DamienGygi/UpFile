@@ -29,7 +29,7 @@ public class Login {
 
   @Test
   public void testLogin() throws Exception {
-    driver.findElement(By.linkText("login")).click();
+    driver.findElement(By.linkText("Se connecter")).click();
     driver.findElement(By.name("j_username")).sendKeys("test");
     driver.findElement(By.name("j_password")).sendKeys("test");
     Thread.sleep(1000);

@@ -29,7 +29,7 @@ public class ViewFile {
   public void testViewFile() throws Exception {
     driver.findElement(By.linkText("Liste de fichiers")).click();
     Thread.sleep(1000);
-    driver.findElement(By.linkText("View")).click();
+    driver.findElement(By.linkText("Voir")).click();
     Thread.sleep(1000);
   }
 

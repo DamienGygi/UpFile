@@ -31,7 +31,7 @@ public class Subscribe {
     @Test
     public void testSubsribe() throws Exception {
         String s = RandomStringUtils.randomAlphabetic(8).toLowerCase();
-        driver.findElement(By.linkText("Subscribe")).click();
+        driver.findElement(By.linkText("S'inscrire")).click();
         driver.findElement(By.id("j_idt33:email")).sendKeys(s+"@test.com");
         Thread.sleep(1000);
         driver.findElement(By.id("j_idt33:username")).sendKeys(s);
